@@ -1,0 +1,13 @@
+.newsWrap {
+    background: none repeat scroll 0 0 #fff;
+    margin: 0 auto;
+    padding: 20px 10px;
+    width: 95%;
+}
+.newsWrap h1{text-align:center; margin: 30px 0;}
+.newsWrap h3{text-align:center;}
+#nhtLeft {
+    float: left;
+}
+#nhtRight{float:right;}
+.clrFix{clear:both;}
