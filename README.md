@@ -7,6 +7,8 @@ WP Thumbnail Slider is a wordpress plugin to display your image gallery with thu
 
 The plugin is designed for any image gallery or image slider. "WP Thumbnail Slider" is a free wordpress plugin. Any developer can change Or modify this plugin without author permission.
 
+View live demo of this plugin [DEMO](http://www.e2soft.com/blog/wp-thumbnail-slider/).
+
 
     1. Upload wp-thumbnail-slider to the /wp-content/plugins/ directory
     2. Activate the plugin through the 'Plugins' menu in WordPress
