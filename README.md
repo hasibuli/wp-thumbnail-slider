@@ -14,5 +14,7 @@ View live demo of this plugin [DEMO](http://www.e2soft.com/blog/wp-thumbnail-sli
     2. Activate the plugin through the 'Plugins' menu in WordPress
     3. Click on the new menu item "WPT Slider" and create your imgae gallery very easy.
     4. Just copy and paste " if(function_exists('wptThumbnailSlider')){wPTPostLoop();} in the template code or [WPT-SLIDER] in the post/page" where you want to display imgae slider.
+    
+
 
 * "PLEASE DON'T USE VARIOUS SIZE IMAGE ON SLIDER"
