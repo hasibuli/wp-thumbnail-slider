@@ -1,4 +1,5 @@
 (function ($, undefined) {
+	//http://sachinchoolur.github.io/lightslider/
     'use strict';
     var defaults = {
         item: 3,
@@ -23,7 +24,7 @@
         adaptiveHeight: false,
         vertical: false,
         verticalHeight: 500,
-        vThumbWidth: 100,
+        vThumbWidth: 50,
         thumbItem: 10,
         pager: true,
         gallery: false,
