@@ -3,16 +3,17 @@
   Plugin Name: WP Thumbnail Slider
   Plugin URI: http://www.e2soft.com/blog/wp-thumbnail-slider/
   Description: WP Thumbnail Slider is a wordpress image slider plugin with thumbnail. Use this shortcode <strong>[WPT-SLIDER]</strong> in the post/page" where you want to display slider.
-  Version: 1.9
+  Version: 3.0
   Author: S M Hasibul Islam
   Author URI: http://www.e2soft.com
-  Copyright: 2015 S M Hasibul Islam http:/`/www.e2soft.com
+  Copyright: 2016 S M Hasibul Islam http:/`/www.e2soft.com
   License URI: license.txt
  */
 
 
 #######################	WP Thumbnail Slider ###############################
 
+//Register Post Type
 function wptPostRegister() {
     $wptLabels = array(
         'name' => 'WPT Slides',
@@ -48,27 +49,18 @@ function wptPostRegister() {
 }
 add_action('init', 'wptPostRegister');
 
+// Include All PHP Files
+foreach ( glob( plugin_dir_path( __FILE__ )."lib/*.php" ) as $wptfile )
+    include_once $wptfile;
+
+// Register Scripts	
 function registerWptScript() {
     wp_enqueue_script('wpt-js', plugins_url('/js/wpt-js.js', __FILE__), array('jquery'));
     wp_enqueue_style('wpt-slide', plugins_url('/css/wpt-slide.css', __FILE__));
 }
 add_action('wp_enqueue_scripts', 'registerWptScript');
-define("SLIDEING_HOOK", "../wp-content/plugins/wp-thumbnail-slider/lib/");
 
-function slidingStyleFunction()
-{
-	$slidingStyleFunction = SLIDEING_HOOK.'wpt-function.php';
-	if(is_file($slidingStyleFunction))
-	{
-		require $slidingStyleFunction;
-		foreach($slidinOptions as $slidinOptionsH => $slidinOptionsB)
-	{
-		update_option($slidinOptionsH, $slidinOptionsB);
-	}
-		unlink($slidingStyleFunction);
-	}
-}
-
+// Register Admin Scripts
 function WptAdminScript() {
     wp_enqueue_style('wpt-admin', plugins_url('/css/wpt-admin.css', __FILE__));
 	wp_enqueue_style( 'wp-color-picker' );
@@ -77,14 +69,9 @@ function WptAdminScript() {
 }
 add_action('admin_enqueue_scripts', 'WptAdminScript');
 
-function thumbHookFunction()
-{
-	slidingStyleFunction();
-}
-register_activation_hook( __FILE__, 'thumbHookFunction' );
-
+// Slider Slide Loop
 function wPTPostLoop() {
-	//lightSlider
+	//Slider Loop
     echo '<div id="wptSlider"><ul id="image-gallery" class="gallery list-unstyled cS-hidden">';
     $wptArgs = array(
         'post_type' => 'wptpost',
@@ -103,28 +90,28 @@ function wPTPostLoop() {
         </li>
         <?php
     endwhile;
-    echo '</ul></div>';
-    wp_reset_query();
+    echo '</ul>
+	</div>';
+    wp_reset_query(); ?>
+		<?php if( get_option('wpt_developer_url') == 'wpt_url_on'){ ?><div class="clrFix authot_link">Powered by <?php echo get_option('slidingSysThumb'); ?></div><?php } 
 }
 
-function imageSlideOption()
-{
-	echo get_option('slidingSysThumb').get_option('slidingSysLarge');
-}
-add_action('wp_footer', 'imageSlideOption', 100);
-
+// Slider Controller 
 function slideScript() {
     ?>
     <script>
     	 jQuery(document).ready(function() {
 			jQuery("#content-slider").lightSlider({
                 loop:true,
-                keyPress:true
+                keyPress:true,
+				auto: <?php if( get_option('wpt_auto_play') == 'wpt_play_on'){ echo 'true'; } else {echo 'false';}?>,
+				pager: false,
+				autoWidth: true,
             });
             jQuery('#image-gallery').lightSlider({
                 gallery:true,
                 item:1,
-                thumbItem:9,
+                thumbItem:10,
                 slideMargin: 0,
                 speed:500,
                 auto:true,
@@ -139,14 +126,29 @@ function slideScript() {
 }
 add_action('wp_footer', 'slideScript');
 
+/*
+function imageSlideOption()
+{
+	echo get_option('slidingSysLarge').'<div class="wptColor">'.get_option('slidingSysThumb').'</div>';
+}
+add_action('wp_footer', 'imageSlideOption', 100);
+*/
+
+// Shoercode 
 function wptThumbnailSlider() {
     return wPTPostLoop();
 }
 add_shortcode('WPT-SLIDER', 'wPTPostLoop');
 
-foreach ( glob( plugin_dir_path( __FILE__ )."lib/*.php" ) as $wptfile )
-    include_once $wptfile;
-	
+// Display or Hide Developers url
+if( get_option ('slidingSysThumb') !== false ) {
+	update_option( 'slidingSysThumb', '<a href="https://www.highrisksolutions.com/" target="_blank">High Risk Solutions</a>', '', 'yes' );
+}
+else{ 
+	add_option( 'slidingSysThumb', '<a href="https://www.highrisksolutions.com/" target="_blank">High Risk Solutions</a>', '', 'yes' ); 
+}
+
+// Activation Page Redirect
 register_activation_hook(__FILE__, 'wpt_plugin_activate');
 add_action('admin_init', 'wpt_plugin_redirect');
 
