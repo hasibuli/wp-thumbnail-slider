@@ -3,7 +3,7 @@
 
 WP Thumbnail Slider is a wordpress plugin to display your image gallery with thumbnail slider on your website! This is beautiful responsive image slider for wordPress blogs and sites. 
 
- Plugin Settings 
+ Plugin Settings Video Tutorial
 https://www.youtube.com/watch?v=4daJ27K3tM0
 
 The plugin is designed for any image gallery or image slider. "WP Thumbnail Slider" is a free wordpress plugin.
