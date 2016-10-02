@@ -1,4 +1,4 @@
-=== WP Thumbnail Slider ===
+# === WP Thumbnail Slider ===
 
 
 WP Thumbnail Slider is a wordpress plugin to display your image gallery with thumbnail slider on your website! This is beautiful responsive image slider for wordPress blogs and sites. 
@@ -11,7 +11,7 @@ The plugin is designed for any image gallery or image slider. "WP Thumbnail Slid
 View live demo of [WP Thumbnail Slider](http://www.e2soft.com/blog/wp-thumbnail-slider/).
 
 
-= Features =
+# = Features =
 
 
   * Very easy to install and configure
@@ -26,7 +26,7 @@ View live demo of [WP Thumbnail Slider](http://www.e2soft.com/blog/wp-thumbnail-
 
   
 
-== Installation ==
+# == Installation ==
 
 
 * Upload `wp-thumbnail-slider` to the `/wp-content/plugins/` directory
@@ -38,7 +38,7 @@ in the template code or  <strong>[WPT-SLIDER]</strong> in the post/page" where y
 * "PLEASE DON'T USE VARIOUS SIZE IMAGE ON SLIDER.  USE SAME SIZE IMAGE."
 
 
-== Changelog ==
+# == Changelog ==
 
 = 3.0 =
 
